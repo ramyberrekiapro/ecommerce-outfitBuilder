@@ -9,8 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        sand: "#F5F0EB",
+        ink: "#1A1A1A",
+        dune: "#C9B99A",
+        sea: "#0D1B2A",
+        terracotta: "#B5582F",
+        mist: "#E8E2DA",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        "wider-2": "0.18em",
       },
     },
   },

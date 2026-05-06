@@ -1,101 +1,110 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ProductCard } from "@/components/ProductCard";
+import { getFeaturedProducts } from "@/lib/products";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const featured = getFeaturedProducts(6);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+      {/* HERO ─────────────────────────────────────────────────────── */}
+      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 50% 20%, #F5F0EB 0%, #E8E2DA 55%, #C9B99A 100%)",
+          }}
+        />
+        <div className="px-6 text-center max-w-3xl">
+          <p className="text-xs uppercase tracking-wider-2 text-ink/60 mb-6">
+            Été 213 — Méditerranée
+          </p>
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl tracking-wider-2 text-ink leading-[0.95]">
+            213
+          </h1>
+          <p className="font-display italic text-2xl md:text-3xl text-ink/80 mt-6">
+            Linen, silk, the colors of the coast.
+          </p>
+          <p className="text-sm text-ink/70 mt-8 max-w-md mx-auto leading-relaxed">
+            Editorial summer essentials made for sun and sea — with virtual
+            try-on, so you see how it looks on you before you buy.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/shop"
+              className="inline-flex items-center justify-center bg-ink text-sand uppercase tracking-wider-2 text-xs px-7 py-4 hover:bg-sea transition-colors"
+            >
+              Shop Now
+            </Link>
+            <Link
+              href="/try-on"
+              className="inline-flex items-center justify-center bg-terracotta text-sand uppercase tracking-wider-2 text-xs px-7 py-4 hover:brightness-95 transition"
+            >
+              Try It On
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* FEATURED ─────────────────────────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <p className="text-xs uppercase tracking-wider-2 text-ink/60 mb-3">
+              Nouveautés
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl tracking-wider-2">
+              The Été Edit
+            </h2>
+          </div>
+          <Link
+            href="/shop"
+            className="hidden sm:inline-block text-xs uppercase tracking-wider-2 text-ink hover:text-terracotta transition-colors"
+          >
+            View all →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+          {featured.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* BRAND STATEMENT ──────────────────────────────────────────── */}
+      <section className="bg-mist">
+        <div className="max-w-5xl mx-auto px-6 md:px-10 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-xs uppercase tracking-wider-2 text-ink/60 mb-4">
+              The House
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl leading-tight">
+              From the Côte d&apos;Algérie, with a view of the sea.
+            </h2>
+          </div>
+          <div className="space-y-4 text-ink/80 leading-relaxed">
+            <p>
+              213 is a Mediterranean wardrobe — quietly cut, slowly made,
+              colored by salt, sun, and stone. Every piece is built to soften
+              with wear.
+            </p>
+            <p>
+              We believe a wardrobe should be tried before it&apos;s bought.
+              Our virtual try-on places each garment on you, so you see how it
+              moves with your shape — before anything is shipped.
+            </p>
+            <Link
+              href="/try-on"
+              className="inline-block mt-2 text-xs uppercase tracking-wider-2 text-terracotta hover:text-ink transition-colors"
+            >
+              Try a piece on →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
