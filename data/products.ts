@@ -6,7 +6,7 @@ const SIZES_NUM = ["36", "38", "40", "42", "44"];
 // Placeholder images — palette-coloured, brand-styled. Swap with real product
 // photography in production.
 const ph = (label: string, bg = "F5F0EB", fg = "1A1A1A") =>
-  `https://placehold.co/800x1000.png/${bg}/${fg}?text=${encodeURIComponent(label)}&font=playfair`;
+  `https://placehold.co/800x1000/${bg}/${fg}.png?text=${encodeURIComponent(label)}&font=playfair`;
 
 export const products: Product[] = [
   // ── TOPS ────────────────────────────────────────────────────────────
@@ -21,6 +21,30 @@ export const products: Product[] = [
     description:
       "A featherweight linen shirt cut for the heat. Drop shoulder, mother-of-pearl buttons, gently relaxed fit.",
     material: "100% European linen",
+  },
+  {
+    id: "port-oxford-shirt",
+    name: "Port Oxford Shirt",
+    price: 110,
+    category: "top",
+    colors: ["White"],
+    sizes: SIZES_STD,
+    images: ["/products/08061538250-a4o.jpg", "/products/08153777800-a4o.jpg"],
+    description:
+      "A crisp cotton shirt with a relaxed shoulder and clean collar — made for late mornings at the marina.",
+    material: "100% cotton",
+  },
+  {
+    id: "coast-cotton-tee",
+    name: "Coast Cotton Tee",
+    price: 60,
+    category: "top",
+    colors: ["White"],
+    sizes: SIZES_STD,
+    images: ["/products/08153777800-a4o.jpg", "/products/08061538250-a4o.jpg"],
+    description:
+      "A minimal tee in soft cotton jersey with a slightly boxy cut — the one you wear all summer.",
+    material: "100% cotton jersey",
   },
   {
     id: "silk-marin-tee",

@@ -67,7 +67,7 @@ export async function generateTryOnImage(
         "Content-Type": "application/json",
         "HTTP-Referer":
           process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-        "X-Title": "213 — Virtual Try-On",
+        "X-Title": "213 - Virtual Try-On",
       },
       body: JSON.stringify(body),
     });

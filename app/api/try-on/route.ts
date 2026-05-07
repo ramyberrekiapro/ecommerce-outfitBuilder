@@ -13,6 +13,22 @@ export const maxDuration = 60;
 
 const VALID_MIMES = ["image/jpeg", "image/png", "image/webp"];
 
+function getRequestOrigin(req: NextRequest): string {
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  const proto = req.headers.get("x-forwarded-proto") ?? "http";
+  if (!host) return process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  return `${proto}://${host}`;
+}
+
+function toAbsoluteUrl(input: string, origin: string): string {
+  // Node fetch needs absolute URLs. Frontend may send "/products/..." paths.
+  try {
+    return new URL(input, origin).toString();
+  } catch {
+    return input;
+  }
+}
+
 export async function POST(req: NextRequest) {
   let formData: FormData;
   try {
@@ -83,7 +99,9 @@ export async function POST(req: NextRequest) {
 
   let garmentDataUrl: string;
   try {
-    const garmentRes = await fetch(garmentImageUrl);
+    const origin = getRequestOrigin(req);
+    const absGarmentUrl = toAbsoluteUrl(garmentImageUrl, origin);
+    const garmentRes = await fetch(absGarmentUrl);
     if (!garmentRes.ok) throw new Error(`fetch_failed_${garmentRes.status}`);
     const ct = garmentRes.headers.get("content-type") ?? "";
     const garmentBuffer = Buffer.from(await garmentRes.arrayBuffer());
