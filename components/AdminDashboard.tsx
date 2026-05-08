@@ -66,6 +66,7 @@ export function AdminDashboard() {
     setTab("add");
     setError(null);
     setSuccess(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function cancelEdit() {
@@ -361,68 +362,62 @@ function ProductTable({
   onDelete: (id: string) => void;
   deleting: string | null;
 }) {
+  function confirmDelete(p: AdminProduct) {
+    if (window.confirm(`Delete "${p.name}"? This cannot be undone.`)) {
+      onDelete(p.id);
+    }
+  }
+
+  if (products.length === 0) {
+    return <p className="text-sm text-ink/40 py-10 text-center">No products yet.</p>;
+  }
+
   return (
-    <div className="border border-mist overflow-x-auto">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-mist bg-mist/50">
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal w-16">Img</th>
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal">Name</th>
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal">Category</th>
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal">Price</th>
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal">Colors</th>
-            <th className="text-left px-4 py-3 text-xs uppercase tracking-wider-2 text-ink/60 font-normal">Sizes</th>
-            <th className="px-4 py-3 w-24"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr key={p.id} className="border-b border-mist last:border-0 hover:bg-mist/30 transition-colors">
-              <td className="px-4 py-3">
-                {p.images[0] ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.images[0]} alt="" className="w-10 h-14 object-cover bg-mist" />
-                ) : (
-                  <div className="w-10 h-14 bg-mist border border-ink/10" />
-                )}
-              </td>
-              <td className="px-4 py-3">
-                <p className="font-medium leading-tight">{p.name}</p>
-                <p className="text-[11px] text-ink/40 mt-0.5 truncate max-w-[180px]">{p.id}</p>
-              </td>
-              <td className="px-4 py-3">
-                <span className="text-[10px] uppercase tracking-wider-2 px-2 py-1 bg-mist border border-ink/10">
+    <div className="border border-mist">
+      {products.map((p) => (
+        <div key={p.id} className="border-b border-mist last:border-0">
+          {/* Top row: image + name + price + actions */}
+          <div className="flex items-stretch">
+            {/* Thumbnail */}
+            <div className="flex-shrink-0 w-14">
+              {p.images[0] ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={p.images[0]} alt="" className="w-14 h-full min-h-[72px] object-cover bg-mist" />
+              ) : (
+                <div className="w-14 min-h-[72px] bg-mist border-r border-mist" />
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="flex-1 min-w-0 px-3 py-2.5">
+              <p className="font-medium text-sm leading-snug truncate">{p.name}</p>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-[10px] uppercase tracking-wider-2 px-1.5 py-0.5 bg-mist border border-ink/10 text-ink/60 flex-shrink-0">
                   {p.category}
                 </span>
-              </td>
-              <td className="px-4 py-3 tabular-nums">€{p.price}</td>
-              <td className="px-4 py-3 text-[11px] text-ink/60 max-w-[120px] truncate">
-                {p.colors.join(", ")}
-              </td>
-              <td className="px-4 py-3 text-[11px] text-ink/60 max-w-[120px] truncate">
-                {p.sizes.join(", ")}
-              </td>
-              <td className="px-4 py-3">
-                <div className="flex gap-2 justify-end">
-                  <button
-                    onClick={() => onEdit(p)}
-                    className="text-[10px] uppercase tracking-wider-2 text-ink/50 hover:text-ink transition-colors"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onDelete(p.id)}
-                    disabled={deleting === p.id}
-                    className="text-[10px] uppercase tracking-wider-2 text-terracotta/70 hover:text-terracotta transition-colors disabled:opacity-40"
-                  >
-                    {deleting === p.id ? "…" : "Delete"}
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <span className="text-xs text-ink/50 tabular-nums flex-shrink-0">€{p.price}</span>
+              </div>
+            </div>
+
+            {/* Actions — fixed width column, always on screen */}
+            <div className="flex-shrink-0 flex flex-col justify-center gap-1.5 pr-3 pl-2 py-2">
+              <button
+                onClick={() => onEdit(p)}
+                className="text-[10px] uppercase tracking-wider-2 px-2.5 py-1 border border-ink/30 text-ink/60 hover:border-ink hover:text-ink transition-colors whitespace-nowrap"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => confirmDelete(p)}
+                disabled={deleting === p.id}
+                className="text-[10px] uppercase tracking-wider-2 px-2.5 py-1 border border-terracotta/30 text-terracotta/60 hover:border-terracotta hover:text-terracotta transition-colors disabled:opacity-40 whitespace-nowrap"
+              >
+                {deleting === p.id ? "…" : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

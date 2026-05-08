@@ -1,28 +1,5 @@
 [
   {
-    "id": "linen-camisa",
-    "name": "Linen Camisa",
-    "price": 120,
-    "category": "top",
-    "colors": [
-      "White",
-      "Sand",
-      "Navy"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "images": [
-      "https://images.unsplash.com/photo-1776633733518-d81137214dc9?w=800&h=1000&fit=crop&q=80"
-    ],
-    "description": "A featherweight linen shirt cut for the heat. Drop shoulder, mother-of-pearl buttons, gently relaxed fit.",
-    "material": "100% European linen"
-  },
-  {
     "id": "port-oxford-shirt",
     "name": "Port Oxford Shirt",
     "price": 110,
