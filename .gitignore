@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal documentation (sensitive project details)
+CLAUDE.md
+agent.md
+openrouter-nano-banana-2-docs.md
+
+# claude directory
+.claude/
