@@ -35,6 +35,7 @@ export async function generateTryOnImage(
   const body = {
     model: "google/gemini-3.1-flash-image-preview",
     modalities: ["image", "text"],
+    include_usage: true,
     image_config: {
       aspect_ratio: aspectRatio,
       image_size: imageSize,
@@ -43,9 +44,15 @@ export async function generateTryOnImage(
       {
         role: "system",
         content:
-          "You are a fashion photography AI. Generate photorealistic virtual try-on images. " +
-          "Preserve the subject's face and identity exactly from the reference selfie. " +
-          "Match each garment exactly to its reference image in color, cut, and pattern.",
+          "You are an elite fashion photography AI specializing in photorealistic virtual try-on. " +
+          "Your output must look indistinguishable from a real high-end fashion campaign photograph. " +
+          "CRITICAL RULES — never violate these:\n" +
+          "1. The subject's face, skin tone, hair color, and identity must be reproduced EXACTLY from the reference selfie (Image 1). Do not substitute a generic model face.\n" +
+          "2. Every garment must match its reference clothing image EXACTLY — same color, same fabric texture, same cut, same pattern, same stitching details. Do not invent or alter any garment.\n" +
+          "3. Generate exactly ONE image. No text, no watermarks, no logos.\n" +
+          "4. The photograph must be photorealistic — not illustrated, not painted, not cartoon-like.\n" +
+          "5. Lighting, shadows, and fabric drape must follow the laws of physics — realistic, not CGI-flat.\n" +
+          "6. The result must look like it belongs in Vogue, a Jacquemus lookbook, or a Loro Piana campaign.",
       },
       {
         role: "user",

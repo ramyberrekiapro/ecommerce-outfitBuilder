@@ -11,8 +11,8 @@ interface SearchParams {
   searchParams: { product?: string };
 }
 
-export default function TryOnPage({ searchParams }: SearchParams) {
-  const products = getAllProducts();
+export default async function TryOnPage({ searchParams }: SearchParams) {
+  const products = await getAllProducts();
   return (
     <div className="max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-20">
       <header className="mb-12 max-w-2xl">

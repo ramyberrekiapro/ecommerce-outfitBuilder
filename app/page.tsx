@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ProductCard } from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/lib/products";
 
-export default function Home() {
-  const featured = getFeaturedProducts(6);
+export default async function Home() {
+  const featured = await getFeaturedProducts(6);
 
   return (
     <>
@@ -43,6 +43,12 @@ export default function Home() {
               className="inline-flex items-center justify-center bg-terracotta text-sand uppercase tracking-wider-2 text-xs px-7 py-4 hover:brightness-95 transition"
             >
               Try It On
+            </Link>
+            <Link
+              href="/outfit-builder"
+              className="inline-flex items-center justify-center bg-transparent text-ink border border-ink uppercase tracking-wider-2 text-xs px-7 py-4 hover:bg-ink hover:text-sand transition-colors"
+            >
+              Build an Outfit
             </Link>
           </div>
         </div>

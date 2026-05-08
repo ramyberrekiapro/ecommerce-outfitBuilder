@@ -6,8 +6,8 @@ export const metadata = {
   description: "The Été 213 collection. Linen, silk, the colors of the coast.",
 };
 
-export default function ShopPage() {
-  const products = getAllProducts();
+export default async function ShopPage() {
+  const products = await getAllProducts();
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
       <header className="mb-12 md:mb-16">

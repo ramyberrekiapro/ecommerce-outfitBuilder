@@ -9,12 +9,13 @@ interface Params {
   params: { id: string };
 }
 
-export function generateStaticParams() {
-  return getAllProducts().map((p) => ({ id: p.id }));
+export async function generateStaticParams() {
+  const all = await getAllProducts();
+  return all.map((p) => ({ id: p.id }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const product = getProductById(params.id);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const product = await getProductById(params.id);
   if (!product) return { title: "Not found — 213" };
   return {
     title: `${product.name} — 213`,
@@ -22,11 +23,15 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function ProductPage({ params }: Params) {
-  const product = getProductById(params.id);
+export default async function ProductPage({ params }: Params) {
+  const [product, all] = await Promise.all([
+    getProductById(params.id),
+    getAllProducts(),
+  ]);
+
   if (!product) notFound();
 
-  const related = getAllProducts()
+  const related = all
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 3);
 

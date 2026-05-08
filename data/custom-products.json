@@ -1,0 +1,112 @@
+[
+  {
+    "id": "linen-camisa",
+    "name": "Linen Camisa",
+    "price": 120,
+    "category": "top",
+    "colors": [
+      "White",
+      "Sand",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1776633733518-d81137214dc9?w=800&h=1000&fit=crop&q=80"
+    ],
+    "description": "A featherweight linen shirt cut for the heat. Drop shoulder, mother-of-pearl buttons, gently relaxed fit.",
+    "material": "100% European linen"
+  },
+  {
+    "id": "port-oxford-shirt",
+    "name": "Port Oxford Shirt",
+    "price": 110,
+    "category": "top",
+    "colors": [
+      "White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&h=1000&fit=crop&q=80"
+    ],
+    "description": "A crisp cotton shirt with a relaxed shoulder and clean collar — made for late mornings at the marina.",
+    "material": "100% cotton"
+  },
+  {
+    "id": "camiseta-boxy-fit-spiderman-1778249556280",
+    "name": "CAMISETA BOXY FIT SPIDERMAN ",
+    "price": 17,
+    "category": "top",
+    "colors": [
+      "Red"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Cuidar de tus prendas es una manera de alargar su vida útil. Sigue las instrucciones de cuidado y lava tus prendas solo cuando sea necesario. Reduciendo los lavados y los secados alargamos la vida de nuestras prendas y reducimos el consumo de agua y energía.",
+    "material": "100% algodón",
+    "images": [
+      "https://static.bershka.net/assets/public/e795/ad38/e5594b15a5a6/72a845831b29/01081190600-a4o/01081190600-a4o.jpg?ts=1771592595620&w=563",
+      "https://static.bershka.net/assets/public/b581/ed4c/b24d4997aae4/804d497ead63/01081190600-p/01081190600-p.jpg?ts=1772115713555&w=850"
+    ]
+  },
+  {
+    "id": "cazadora-efecto-piel-1778249632651",
+    "name": "CAZADORA EFECTO PIEL",
+    "price": 50,
+    "category": "outerwear",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "EXTERIOR\n\nTEJIDO BASE\n100% poliéster\nRECUBRIMIENTO\n100% poliuretano",
+    "material": "Leather",
+    "images": [
+      "https://static.bershka.net/assets/public/5d3d/406f/800745a08058/2c864fd9268c/00097073800-a4o/00097073800-a4o.jpg?ts=1763567710996&w=850",
+      "https://static.bershka.net/assets/public/4a8f/650e/2637425896eb/2848432ad3a6/00097073800-a1t/00097073800-a1t.jpg?ts=1771579469600&w=850"
+    ]
+  },
+  {
+    "id": "jeans-barrel-print-1778249727466",
+    "name": "Jeans Barrel Print",
+    "price": 70,
+    "category": "bottom",
+    "colors": [
+      "Beige"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "100% algodón\n",
+    "material": "100% algodón",
+    "images": [
+      "https://static.bershka.net/assets/public/f36d/58a8/8e4b4dc0844e/1f6cd70eb24a/00899074500-a4o/00899074500-a4o.jpg?ts=1768408285620&w=850",
+      "https://static.bershka.net/assets/public/f7f6/15c2/1f494043b6d8/e911637895c5/00899074500-a3o/00899074500-a3o.jpg?ts=1768984243321&w=850"
+    ]
+  }
+]
