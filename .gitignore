@@ -40,6 +40,9 @@ CLAUDE.md
 agent.md
 openrouter-nano-banana-2-docs.md
 
-# claude directory
 .claude/
 .env.local
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c2c5f1452883e45a1ed314a9c564c3e2bbc8232
