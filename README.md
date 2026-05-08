@@ -32,7 +32,40 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Notes
+## Features
 
-- Product + try-on specs live in `CLAUDE.md`.
-- OpenRouter model notes live in `openrouter-nano-banana-2-docs.md`.
+- **Virtual Try-On**: AI-powered outfit visualization using selfies
+- **Product Catalog**: Browse and filter clothing items
+- **Outfit Builder**: Create complete outfit combinations
+- **Admin Dashboard**: Manage products and inventory
+- **Shopping Cart**: Add items and manage selections
+- **Responsive Design**: Optimized for all devices
+
+## Technology Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **State Management**: Zustand
+- **Image Processing**: Sharp
+- **AI Integration**: OpenRouter API (Google Gemini 3.1 Flash)
+- **Deployment**: Vercel-ready with optimized configuration
+
+## Project Structure
+
+```
+app/
+├── api/          # API routes for try-on and admin
+├── shop/         # Product catalog and detail pages
+├── try-on/       # Single item virtual try-on
+├── outfit-builder/ # Complete outfit creation
+├── admin/        # Admin dashboard
+components/
+├── ui/           # Reusable UI components
+├── ProductCard.tsx
+├── TryOnFlow.tsx
+├── OutfitBuilder.tsx
+└── AdminDashboard.tsx
+lib/
+├── openrouter.ts # AI API client
+├── preprocessing.ts # Image validation
+└── anthropometric.ts # Body measurement calculations
+```
