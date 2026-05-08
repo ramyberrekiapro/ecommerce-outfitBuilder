@@ -7,13 +7,16 @@ export async function getAllProducts(): Promise<Product[]> {
   const customById = new Map(custom.map((p) => [p.id, p]));
   const staticIds = new Set(staticProducts.map((p) => p.id));
 
+  // Ensure images is always an array
+  const normalize = (p: Product): Product => ({ ...p, images: Array.isArray(p.images) ? p.images : [] });
+
   // Static products: skip deleted, apply overrides from custom
   const merged = staticProducts
     .filter((p) => !deletedIds.includes(p.id))
-    .map((p) => customById.get(p.id) ?? p);
+    .map((p) => normalize(customById.get(p.id) ?? p));
 
   // New custom-only products (ID not in static set)
-  const newCustom = custom.filter((p) => !staticIds.has(p.id));
+  const newCustom = custom.filter((p) => !staticIds.has(p.id)).map(normalize);
 
   return [...merged, ...newCustom];
 }

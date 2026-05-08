@@ -36,9 +36,33 @@ async function redisSet(key: string, value: unknown): Promise<void> {
 
 /* ── Public API ─────────────────────────────────────────────────────── */
 
+function safeProductArray(raw: unknown): Product[] {
+  if (!raw) return [];
+  // If it came back as a string (e.g. from manual curl seeding), parse it
+  if (typeof raw === "string") {
+    try { return JSON.parse(raw) as Product[]; } catch { return []; }
+  }
+  // Guard against character-array corruption (array of strings/non-objects)
+  if (Array.isArray(raw)) {
+    const objs = raw.filter((item) => item && typeof item === "object" && !Array.isArray(item) && "id" in item);
+    if (objs.length > 0) return objs as Product[];
+    return [];
+  }
+  return [];
+}
+
+function safeStringArray(raw: unknown): string[] {
+  if (!raw) return [];
+  if (typeof raw === "string") {
+    try { return JSON.parse(raw) as string[]; } catch { return []; }
+  }
+  if (Array.isArray(raw)) return raw.filter((s) => typeof s === "string");
+  return [];
+}
+
 export async function getCustomProducts(): Promise<Product[]> {
   if (isRedisConfigured) {
-    return (await redisGet<Product[]>("custom-products")) ?? [];
+    return safeProductArray(await redisGet<unknown>("custom-products"));
   }
   try {
     return JSON.parse(await readFile(CUSTOM_PATH, "utf-8")) as Product[];
@@ -57,7 +81,7 @@ export async function setCustomProducts(products: Product[]): Promise<void> {
 
 export async function getDeletedIds(): Promise<string[]> {
   if (isRedisConfigured) {
-    return (await redisGet<string[]>("deleted-ids")) ?? [];
+    return safeStringArray(await redisGet<unknown>("deleted-ids"));
   }
   try {
     return JSON.parse(await readFile(DELETED_PATH, "utf-8")) as string[];
