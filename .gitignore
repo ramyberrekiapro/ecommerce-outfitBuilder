@@ -42,3 +42,4 @@ openrouter-nano-banana-2-docs.md
 
 # claude directory
 .claude/
+.env.local

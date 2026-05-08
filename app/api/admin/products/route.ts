@@ -16,7 +16,7 @@ export async function GET() {
   // New custom-only products
   const newCustom = custom.filter((p) => !staticIdSet.has(p.id));
 
-  return NextResponse.json({ products: [...merged, ...newCustom], staticIds: [...staticIdSet] });
+  return NextResponse.json({ products: [...merged, ...newCustom], staticIds: Array.from(staticIdSet) });
 }
 
 export async function POST(req: NextRequest) {
