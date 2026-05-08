@@ -1,32 +1,6 @@
-import { readFile } from "fs/promises";
-import path from "path";
 import { products as staticProducts } from "@/data/products";
+import { getCustomProducts, getDeletedIds } from "@/lib/kv";
 import type { Product, ProductCategory } from "@/lib/types";
-
-const CUSTOM_PATH = path.join(process.cwd(), "data", "custom-products.json");
-const DELETED_PATH = path.join(process.cwd(), "data", "deleted-products.json");
-
-async function getCustomProducts(): Promise<Product[]> {
-  try {
-    const raw = await readFile(CUSTOM_PATH, "utf-8");
-    return JSON.parse(raw) as Product[];
-  } catch (error) {
-    // File doesn't exist on Vercel's read-only filesystem
-    console.warn('Custom products file not found:', error);
-    return [];
-  }
-}
-
-async function getDeletedIds(): Promise<string[]> {
-  try {
-    const raw = await readFile(DELETED_PATH, "utf-8");
-    return JSON.parse(raw) as string[];
-  } catch (error) {
-    // File doesn't exist on Vercel's read-only filesystem
-    console.warn('Deleted products file not found:', error);
-    return [];
-  }
-}
 
 export async function getAllProducts(): Promise<Product[]> {
   const [custom, deletedIds] = await Promise.all([getCustomProducts(), getDeletedIds()]);
@@ -38,7 +12,7 @@ export async function getAllProducts(): Promise<Product[]> {
     .filter((p) => !deletedIds.includes(p.id))
     .map((p) => customById.get(p.id) ?? p);
 
-  // New custom products (IDs not in static set)
+  // New custom-only products (ID not in static set)
   const newCustom = custom.filter((p) => !staticIds.has(p.id));
 
   return [...merged, ...newCustom];
