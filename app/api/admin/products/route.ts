@@ -33,7 +33,7 @@ export async function GET() {
   const newCustom = custom.filter((p) => !staticIdSet.has(p.id));
 
   const all = [...merged, ...newCustom];
-  return NextResponse.json({ products: all, staticIds: [...staticIdSet] });
+  return NextResponse.json({ products: all, staticIds: Array.from(staticIdSet) });
 }
 
 export async function POST(req: NextRequest) {
