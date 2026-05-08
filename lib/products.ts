@@ -10,7 +10,9 @@ async function getCustomProducts(): Promise<Product[]> {
   try {
     const raw = await readFile(CUSTOM_PATH, "utf-8");
     return JSON.parse(raw) as Product[];
-  } catch {
+  } catch (error) {
+    // File doesn't exist on Vercel's read-only filesystem
+    console.warn('Custom products file not found:', error);
     return [];
   }
 }
@@ -19,7 +21,9 @@ async function getDeletedIds(): Promise<string[]> {
   try {
     const raw = await readFile(DELETED_PATH, "utf-8");
     return JSON.parse(raw) as string[];
-  } catch {
+  } catch (error) {
+    // File doesn't exist on Vercel's read-only filesystem
+    console.warn('Deleted products file not found:', error);
     return [];
   }
 }
