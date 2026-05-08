@@ -1,9 +1,9 @@
 {
   "functions": {
-    "app/api/try-on/route.ts": {
+    "api/try-on/route.ts": {
       "maxDuration": 60
     },
-    "app/api/outfit/route.ts": {
+    "api/outfit/route.ts": {
       "maxDuration": 60
     }
   },
