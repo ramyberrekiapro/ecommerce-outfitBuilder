@@ -1,12 +1,4 @@
 {
-  "functions": {
-    "api/try-on/route.ts": {
-      "maxDuration": 60
-    },
-    "api/outfit/route.ts": {
-      "maxDuration": 60
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
